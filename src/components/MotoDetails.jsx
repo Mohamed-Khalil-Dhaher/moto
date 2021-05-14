@@ -4,14 +4,18 @@ var MotoDetails = (props) => (
   <body>
     <div class="wrapper">
       <div class="product-img">
-        <img src={props.moto.image}
-        onClick={() => props.getImages(props.moto._id)}
-         height="420" width="600" />
+        <img
+          src={props.moto.image}
+          onClick={() => props.getImages(props.moto._id)}
+          height="420"
+          width="600"
+        />
       </div>
       <div class="product-info">
         <div class="product-text">
           <h1>{props.moto.type}</h1>
           <h2>Model :{props.moto.model}</h2>
+          <h2>Contact :{props.moto.contactInformation}</h2>
           <p>
             {props.moto.description}
             <br></br>
