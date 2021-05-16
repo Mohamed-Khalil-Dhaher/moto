@@ -1,12 +1,87 @@
 import React from "react";
 import MotoDetails from "./MotoDetails";
-var Motos = (props) => (
-  <div>
-    {props.motos.map((moto) => {
-      return <MotoDetails moto={moto} />;
-    })}
-  </div>
-);
+//import Search from "./Search";
+class Motos extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      moto: "",
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.changeMoto = this.changeMoto.bind(this);
+  }
+
+  handleClick(event) {
+    event.preventDefault();
+    var newMoto;
+    for (var i = 0; i < this.props.motos.length; i++) {
+      if (this.props.motos[i].type === this.state.moto) {
+        newMoto = this.props.motos[i];
+        console.log(newMoto);
+      }
+    }
+    this.state.moto = newMoto;
+    this.setState({
+      moto: newMoto,
+    });
+    console.log(this.state.moto);
+  }
+  changeMoto(event) {
+    // console.log(this.state.moto);
+    this.setState({
+      moto: event.target.value,
+    });
+  }
+  render() {
+    return (
+      <div>
+        <div id="wrap">
+          <form action="" autocomplete="on">
+            <input
+              id="search"
+              name="search"
+              type="text"
+              placeholder="What're we looking for ?"
+              onChange={this.changeMoto}
+              value={this.state.moto}
+            />
+            <input
+              id="search_submit"
+              value="Rechercher"
+              type="submit"
+              onClick={this.handleClick}
+            />
+          </form>
+        </div>
+        <br></br>
+        <div>
+          <div>
+            {/* <h4>type:{this.state.moto.type}</h4>
+            <h4>description:{this.state.moto.description}</h4> */}
+          </div>
+          {this.props.motos.map((moto) => {
+            return <MotoDetails moto={moto} />;
+          })}
+        </div>
+      </div>
+    );
+  }
+}
+// <div>
+//   {/* <div id="wrap">
+//     <form action="" autocomplete="on">
+//       <input
+//         id="search"
+//         name="search"
+//         type="text"
+//         placeholder="What're we looking for ?"
+
+//       />
+//       <input id="search_submit" value="Rechercher" type="submit" />
+//     </form>
+//   </div><br></br> */}
+
+// </div>
 
 export default Motos;
 // type: "",

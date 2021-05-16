@@ -3,7 +3,7 @@ import axios from "axios";
 import "./App.css";
 //import Motos from "./components/Motos";
 import Motos from "./components/Motos";
-import MotoDetails from "./components/MotoDetails";
+//import MotoDetails from "./components/MotoDetails";
 import PostMoto from "./components/PostMoto";
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +11,6 @@ class App extends React.Component {
     this.state = {
       currentView: "motos",
       motos: [],
-      images: [],
     };
     this.fetchMotos = this.fetchMotos.bind(this);
     this.toggleView = this.toggleView.bind(this);
@@ -32,6 +31,25 @@ class App extends React.Component {
       });
     });
   }
+  // handleClick(event) {
+  //   event.preventDefault();
+  //  var newMoto;
+  //  for(var i=0; i<this.state.motos.length; i++) {
+  //    if(this.state.motos[i].type === this.state.moto) {
+  //      newMoto = this.state.motos[i];
+  //    }
+  //  }
+  //  this.state.moto = newMoto;
+  //  this.setState({
+  //    moto: newMoto
+  //  })
+  // }
+  // changeMoto(event) {
+  // this.setState({
+  //   moto: event.target.value
+  // })
+  // }
+  //deleteMoto() {}
 
   getAllMotoImgs(id) {
     axios.get(`http://localhost:8000/api/images/${id}`).then(({ data }) => {
@@ -55,6 +73,7 @@ class App extends React.Component {
               All Motos
             </p>
           </div>
+
           <div class="div" id="about">
             <p class="p" onClick={() => this.toggleView("add")}>
               Add Moto
@@ -68,14 +87,14 @@ class App extends React.Component {
         <br></br>
         <div>
           {this.state.currentView === "motos" ? (
-            <Motos motos={this.state.motos} getImages={this.getAllHomeImgs} />
+            <Motos motos={this.state.motos} changeView={this.toggleView}/>
           ) : (
-            <PostMoto />
+            <PostMoto changeView={this.toggleView} />
           )}
         </div>
       </div>
     );
   }
 }
-
+// getImages={this.getAllMotoImgs}
 export default App;
