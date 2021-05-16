@@ -1,5 +1,6 @@
 body {
-  background-color: #fdf1ec;
+  /* background-color: #fdf1ec; */
+  background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
 }
 
 .wrapper {
