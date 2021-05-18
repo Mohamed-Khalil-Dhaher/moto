@@ -23,7 +23,14 @@ var MotoDetails = (props) => (
         </div>
         <div class="product-price-btn">
           <span>{props.moto.price}</span>DT<br></br>
-          <button type="button">buy now</button>
+          <button
+            type="button"
+            onClick={() => {
+              alert("ADDED TO WISH LIST");
+            }}
+          >
+            buy now
+          </button>
         </div>
       </div>
     </div>

@@ -55,7 +55,7 @@ app.get("/api/motos", (req, res) => {
 });
 
 app.get("/api/images/:_id", (req, res) => {
-  Images.find({ homeID: req.params._id }, (err, docs) => {
+  Images.find({ imageID: req.params._id }, (err, docs) => {
     res.send(docs);
     res.end();
   });

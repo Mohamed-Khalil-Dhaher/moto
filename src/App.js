@@ -20,6 +20,7 @@ class App extends React.Component {
       currentView: view,
     });
   }
+
   componentDidMount() {
     this.fetchMotos();
   }
@@ -51,19 +52,19 @@ class App extends React.Component {
   // }
   //deleteMoto() {}
 
-  getAllMotoImgs(id) {
-    axios.get(`http://localhost:8000/api/images/${id}`).then(({ data }) => {
-      this.setState({
-        images: data,
-      });
-      axios.get(`http://localhost:8000/api/motos/${id}`).then(({ data }) => {
-        this.setState({
-          motoDetails: data,
-        });
-        this.props.changeView("motodetails");
-      });
-    });
-  }
+  // getAllMotoImgs(id) {
+  //   axios.get(`http://localhost:8000/api/images/${id}`).then(({ data }) => {
+  //     this.setState({
+  //       images: data,
+  //     });
+  //     axios.get(`http://localhost:8000/api/motos/${id}`).then(({ data }) => {
+  //       this.setState({
+  //         motoDetails: data,
+  //       });
+  //       this.props.changeView("motodetails");
+  //     });
+  //   });
+  // }
   render() {
     return (
       <div>
@@ -85,16 +86,35 @@ class App extends React.Component {
   </div> */}
         </section>
         <br></br>
+       { this.state.currentView === "motos" ? 
         <div>
-          {this.state.currentView === "motos" ? (
-            <Motos motos={this.state.motos} changeView={this.toggleView}/>
-          ) : (
-            <PostMoto changeView={this.toggleView} />
-          )}
+          <Motos motos={this.state.motos} changeView={this.toggleView} />
         </div>
+      
+     :  
+      
+        <div>
+          <PostMoto changeView={this.toggleView} />
+        </div>
+      }
       </div>
     );
   }
+  // render() {
+  //   if (this.state.currentView === "motos") {
+  //     return (
+  //       <div>
+  //         <Motos motos={this.state.motos} changeView={this.toggleView} />
+  //       </div>
+  //     );
+  //   } else if (this.state.currentView === "add") {
+  //     return (
+  //       <div>
+  //         <PostMoto changeView={this.toggleView} />
+  //       </div>
+  //     );
+  //   }
+  // }
 }
 // getImages={this.getAllMotoImgs}
 export default App;
